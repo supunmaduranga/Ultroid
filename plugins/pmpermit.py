@@ -50,6 +50,8 @@ from . import *
 # ========================= CONSTANTS =============================
 COUNT_PM = {}
 LASTMSG = {}
+WARN_MSGS = {}
+U_WARNS = {}
 if Redis("PMPIC"):
     PMPIC = Redis("PMPIC")
 else:
@@ -206,10 +208,7 @@ if sett == "True" or sett != "False":
             if event.media:
                 await event.delete()
             name = user.first_name
-            if user.last_name:
-                fullname = f"{name} {user.last_name}"
-            else:
-                fullname = name
+            fullname = f"{name} {user.last_name}" if user.last_name else name
             username = f"@{user.username}"
             mention = f"[{get_display_name(user)}](tg://user?id={user.id})"
             count = len(get_approved())
@@ -261,6 +260,7 @@ if sett == "True" or sett != "False":
                         count=count,
                         mention=mention,
                     )
+                    update_pm(user.id, message_, wrn)
                     if inline_pm == "False":
                         await ultroid.send_file(
                             user.id,
@@ -268,14 +268,14 @@ if sett == "True" or sett != "False":
                             caption=message_,
                         )
                     else:
-                        results = await ultroid.inline_query(my_bot, f"ip_{message_}")
+                        results = await ultroid.inline_query(my_bot, f"ip_{user.id}")
                         try:
                             await results[0].click(
                                 user.id, reply_to=event.id, hide_via=True
                             )
                         except Exception as e:
                             print(e)
-                elif event.text == prevmsg:
+                else:
                     async for message in ultroid.iter_messages(
                         user.id,
                         search=UND,
@@ -292,6 +292,7 @@ if sett == "True" or sett != "False":
                         count=count,
                         mention=mention,
                     )
+                    update_pm(user.id, message_, wrn)
                     if inline_pm == "False":
                         await ultroid.send_file(
                             user.id,
@@ -301,14 +302,13 @@ if sett == "True" or sett != "False":
                     else:
                         try:
                             results = await ultroid.inline_query(
-                                my_bot, f"ip_{message_}"
+                                my_bot, f"ip_{user.id}"
                             )
                             await results[0].click(
                                 user.id, reply_to=event.id, hide_via=True
                             )
                         except Exception as e:
                             print(e)
-                LASTMSG.update({user.id: event.text})
             else:
                 async for message in ultroid.iter_messages(user.id, search=UND):
                     await message.delete()
@@ -323,6 +323,7 @@ if sett == "True" or sett != "False":
                     count=count,
                     mention=mention,
                 )
+                update_pm(user.id, message_, wrn)
                 if inline_pm == "False":
                     await ultroid.send_file(
                         user.id,
@@ -331,13 +332,13 @@ if sett == "True" or sett != "False":
                     )
                 else:
                     try:
-                        results = await ultroid.inline_query(my_bot, f"ip_{message_}")
+                        results = await ultroid.inline_query(my_bot, f"ip_{user.id}")
                         await results[0].click(
                             user.id, reply_to=event.id, hide_via=True
                         )
                     except Exception as e:
                         print(e)
-                LASTMSG.update({user.id: event.text})
+            LASTMSG.update({user.id: event.text})
             if user.id not in COUNT_PM:
                 COUNT_PM.update({user.id: 1})
             else:
@@ -706,40 +707,38 @@ async def unblck_in(event):
 
 @callback("deletedissht")
 async def ytfuxist(e):
-    await e.answer("Deleted.")
-    await e.delete()
-
-"""
-@asst.on(events.InlineQuery())
-@in_owner
-async def in_pm_ans(event):
-    if event.text.startswith("ip_"):
-        txt = event.text.split("_", 1)[1]
-"""
+    try:
+        await e.answer("Deleted.")
+        await e.delete()
+    except:
+        pass
 
 
 @asst.on(events.InlineQuery(pattern=re.compile("ip_(.*)")))
 @in_owner
 async def in_pm_ans(event):
-    txt = event.pattern_match.group(1)
-    t = txt.split("\n")
+    from_user = int(event.pattern_match.group(1))
     try:
-        wrns = t[len(t) - 1].split()[2]
-    except BaseException:
-        wrr = Redis("PMWARNS") or "3"
-        wrns = f"?/{wrr}"
-    a = await event.builder.article(
-        title="Inline PMPermit.",
-        text=f"**PMSecururity of {OWNER_NAME}!**",
-        buttons=[
-            [
-                Button.inline("Warns", data=f"admin_only{event.chat_id}"),
-                Button.inline(wrns, data="do_nothing"),
-            ],
-            [Button.inline("Message 📫", data=f"m_{txt}")],
-        ],
+        warns = U_WARNS[from_user]
+    except Exception as e:
+        print(e)
+        warns = "?"
+    wrns = f"{warns}/{WARNS}"
+    await event.answer(
+        [
+            await event.builder.article(
+                title="Inline PMPermit.",
+                text=f"**PMSecurity of {OWNER_NAME}!**",
+                buttons=[
+                    [
+                        Button.inline("Warns", data=f"admin_only{from_user}"),
+                        Button.inline(wrns, data="do_nothing"),
+                    ],
+                    [Button.inline("Message 📫", data=f"m_{from_user}")],
+                ],
+            )
+        ]
     )
-    await event.answer([a])
 
 
 @callback(re.compile("admin_only(.*)"))
@@ -763,5 +762,21 @@ async def _mejik(e):
 
 @callback(re.compile("m_(.*)"))
 async def _rep(event):
-    msg = event.pattern_match.group(1)
-    await event.edit(msg)
+    from_user = int(event.pattern_match.group(1))
+    try:
+        msg_ = WARN_MSGS[from_user]
+    except Exception as e:
+        print(e)
+        msg_ = "Missing."
+    await event.edit(msg_)
+
+
+def update_pm(userid, message, warns_given):
+    try:
+        WARN_MSGS.update({userid: message})
+    except KeyError as e:
+        print(e)
+    try:
+        U_WARNS.update({userid: warns_given})
+    except KeyError as e:
+        print(e)
