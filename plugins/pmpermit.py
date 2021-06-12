@@ -71,7 +71,7 @@ else:
         """
 **PMSecurity of {ON}!**"""
         f"""
-        
+
 {Redis("PM_TEXT")}
 
 """
@@ -707,11 +707,25 @@ async def unblck_in(event):
 
 @callback("deletedissht")
 async def ytfuxist(e):
+<<<<<<< HEAD
     try:
         await e.answer("Deleted.")
         await e.delete()
     except:
         pass
+=======
+    await e.answer("Deleted.")
+    await e.delete()
+
+
+"""
+@asst.on(events.InlineQuery())
+@in_owner
+async def in_pm_ans(event):
+    if event.text.startswith("ip_"):
+        txt = event.text.split("_", 1)[1]
+"""
+>>>>>>> 4c7540f52bf759663b82bfd06c6b25e6627898e4
 
 
 @asst.on(events.InlineQuery(pattern=re.compile("ip_(.*)")))
