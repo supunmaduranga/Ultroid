@@ -693,14 +693,15 @@ async def in_pm_ans(event):
     t = txt.split("\n")
     try:
         wrns = t[len(t) - 1].split()[2]
-    except BaseException:
-        wrns = f'?/{Redis("PMWARNS")}'
+    except BaseException as e:
+        wrr = Redis("PMWARNS") or "3"
+        wrns = f'?/{wrr}'
     a = await event.builder.article(
         title="Inline PMPermit.",
         text=f"**PMSecururity of {OWNER_NAME}!**",
         buttons=[
             [
-                Button.inline("Warns", data=f"admin_only{e.chat_id}"),
+                Button.inline("Warns", data=f"admin_only{event.chat_id}"),
                 Button.inline(wrns, data="do_nothing"),
             ],
             [Button.inline("Message 📫", data=f"m_{txt}")],
