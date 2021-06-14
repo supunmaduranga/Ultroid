@@ -18,7 +18,7 @@ from telethon.tl.types import DocumentAttributeAudio
 from telethon.tl.types import InputWebDocument as wb
 from youtubesearchpython import VideosSearch
 
-ytt = "https://telegra.ph/file/afd04510c13914a06dd03.jpg"
+ytt = "https://telegra.ph/file/d16374e0462adf2746be8.jpg"
 
 
 @in_pattern("yt")
@@ -28,9 +28,9 @@ async def _(event):
         string = event.text.split(" ", maxsplit=1)[1]
     except IndexError:
         fuk = event.builder.article(
-            title="Search Something",
+            title="Search Something 😋",
             thumb=wb(ytt, 0, "image/jpeg", []),
-            text="**YᴏᴜTᴜʙᴇ Sᴇᴀʀᴄʜ**\n\nYou didn't search anything",
+            text="**YᴏᴜTᴜʙᴇ Sᴇᴀʀᴄʜ**\n\nYou didn't search anything 🤔",
             buttons=Button.switch_inline(
                 "Sᴇᴀʀᴄʜ Aɢᴀɪɴ",
                 query="yt ",
@@ -124,11 +124,11 @@ async def _(sur):
     c_time = time.time()
     if song:
         await sur.edit(
-            f"`Preparing to upload song:`\
+            f"`Preparing to upload song 📤:`\
         \n**{ytdl_data['title']}**\
         \nby *{ytdl_data['uploader']}*",
         )
-        MSG = f"**{ytdl_data['title']}** Uploaded Successfully !"
+        MSG = f"**{ytdl_data['title']}** Uploaded Successfully ! 📤"
         chat = sur.chat_id
         whome = ultroid_bot
         if sur.is_private and sur.sender_id != ultroid_bot.uid:
@@ -207,11 +207,11 @@ async def _(fuk):
     c_time = time.time()
     if video:
         await fuk.edit(
-            f"`Preparing to upload video:`\
+            f"`Preparing to upload video 📤:`\
         \n**{ytdl_data['title']}**\
         \nby *{ytdl_data['uploader']}*",
         )
-        MSG = f"**{ytdl_data['title']}** Uploaded Successfully !"
+        MSG = f"**{ytdl_data['title']}** Uploaded Successfully 📤 !"
         chat = fuk.chat_id
         whome = ultroid_bot
         if event.is_private and event.sender_id != ultroid_bot.uid:
