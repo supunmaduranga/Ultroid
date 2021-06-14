@@ -6,9 +6,9 @@
 # <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
 """
-✘ Commands Available -
+⚒️ Commands Available -
 
-• `{i}afk <optional reason>`
+• `{i}afk<optional reason>`
     AFK means away from keyboard,
     After u active this if Someone tag or msg u then It auto Reply Him/her,
     (Note : By Reply To any media U can set media afk too).
@@ -125,7 +125,7 @@ async def on_afk(event):
     if afk_start != {}:
         total_afk_time = str(afk_end - afk_start)
     current_message_text = event.message.message.lower()
-    if "afk" in current_message_text:
+    if "එයා නැ,  දැන් තමයි ඔනේ උබට උව 😂" in current_message_text:
         return False
     sender = await event.get_sender()
     if USER_AFK and not (sender.bot or sender.verified):
