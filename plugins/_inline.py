@@ -22,7 +22,7 @@ from . import *
 
 # ================================================#
 notmine = f"This bot is for {OWNER_NAME}"
-ULTROID_PIC = "https://telegra.ph/file/115f149ed8e154641708b.jpg"
+ULTROID_PIC = "https://telegra.ph/file/d16374e0462adf2746be8.jpg"
 helps = get_string("inline_1")
 
 add_ons = udB.get("ADDONS")
@@ -62,11 +62,11 @@ async def e(o):
                 text=ALIVEMSG,
                 thumb=InputWebDocument(ULTROID_PIC, 0, "image/jpeg", []),
                 buttons=[
-                    [Button.url(text="Support Group", url="t.me/UltroidSupport")],
+                    [Button.url(text="Support group", url="t.me/slbotzone")],
                     [
                         Button.url(
                             text="Repo",
-                            url="https://github.com/Teamultroid/Ultroid",
+                            url="https://github.com/supunmadurangasl",
                         ),
                     ],
                 ],
@@ -233,12 +233,12 @@ async def _(e):
         [
             Button.switch_inline(
                 "Sᴇᴀʀᴄʜ Oɴ Gᴏᴏɢʟᴇ",
-                query="go TeamUltroid",
+                query="go slbotzone ",
                 same_peer=True,
             ),
             Button.switch_inline(
                 "Sᴇᴀʀᴄʜ Oɴ Yᴀʜᴏᴏ",
-                query="yahoo TeamUltroid",
+                query="yahoo slbotzone ",
                 same_peer=True,
             ),
         ],
