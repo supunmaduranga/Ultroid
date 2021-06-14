@@ -12,17 +12,17 @@ from telethon.errors.rpcerrorlist import BotMethodInvalidError as bmi
 from . import *
 
 REPOMSG = (
-    "• **ULTROID USERBOT** •\n\n",
-    "• Repo - [Click Here](https://github.com/TeamUltroid/Ultroid)\n",
-    "• Addons - [Click Here](https://github.com/TeamUltroid/UltroidAddons)\n",
-    "• Support - @UltroidSupport",
+    "• **SLBOTZONE USERBOT** •\n\n",
+    "• Repo - [Click Here](https://github.com/supunmadurangasl)\n",
+    "• video tutorial - [Click Here](https://www.youtube.com/channel/UCvYfJcTr8RY72dIapzMqFQA?sub_confirmation=1)\n",
+    "• Support - @slbotzone ",
 )
 
 
 @ultroid_cmd(pattern="repo$")
 async def repify(e):
     try:
-        q = await ultroid_bot.inline_query(asst.me.username, "repo")
+        q = await slbotzone_bot.inline_query(asst.me.username, "repo")
         await q[0].click(e.chat_id)
         if e.sender_id == ultroid_bot.uid:
             await e.delete()
