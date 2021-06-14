@@ -714,15 +714,6 @@ async def ytfuxist(e):
         pass
 
 
-"""
-@asst.on(events.InlineQuery())
-@in_owner
-async def in_pm_ans(event):
-    if event.text.startswith("ip_"):
-        txt = event.text.split("_", 1)[1]
-"""
-
-
 @asst.on(events.InlineQuery(pattern=re.compile("ip_(.*)")))
 @in_owner
 async def in_pm_ans(event):
@@ -753,7 +744,7 @@ async def in_pm_ans(event):
 @callback(re.compile("admin_only(.*)"))
 async def _admin_tools(event):
     if event.sender_id != OWNER_ID:
-        return await event.answer()
+        return await event.answer("Not for You", alert=True)
     chat = int(event.pattern_match.group(1))
     await event.edit(
         "Owner Tools.",
