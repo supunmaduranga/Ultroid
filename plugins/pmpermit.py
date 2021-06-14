@@ -710,8 +710,9 @@ async def ytfuxist(e):
     try:
         await e.answer("Deleted.")
         await e.delete()
-    except:
+    except BaseException:
         pass
+
 
 """
 @asst.on(events.InlineQuery())
@@ -720,6 +721,7 @@ async def in_pm_ans(event):
     if event.text.startswith("ip_"):
         txt = event.text.split("_", 1)[1]
 """
+
 
 @asst.on(events.InlineQuery(pattern=re.compile("ip_(.*)")))
 @in_owner
