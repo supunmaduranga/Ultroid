@@ -189,7 +189,7 @@ async def _(e):
     token_file_data = f.read()
     udB.set("GDRIVE_TOKEN", token_file_data)
     await e.reply(
-        "`Success!\nYou are all set to use Google Drive with Ultroid Userbot.`",
+        "`Success!\nYou are all set to use Google Drive with slbotzone  Userbot.`",
         buttons=Button.inline("Main Menu", data="setter"),
     )
 
