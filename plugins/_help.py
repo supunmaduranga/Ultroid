@@ -26,7 +26,7 @@ async def ult(ult):
                 output = f"**Plugin** - `{plug}`\n"
                 for i in HELP[plug]:
                     output += i
-                output += "\n© @TeamUltroid"
+                output += "\n© @slbotzone"
                 await eor(ult, output)
             elif plug in CMD_HELP:
                 kk = f"Plugin Name-{plug}\n\n✘ Commands Available -\n\n"
@@ -38,7 +38,7 @@ async def ult(ult):
                     for d in LIST[plug]:
                         x += HNDLR + d
                         x += "\n"
-                    x += "\n© @TeamUltroid"
+                    x += "\n© @slbotzone"
                     await eor(ult, x)
                 except BaseException:
                     await eod(ult, get_string("help_1").format(plug), time=5)
@@ -46,7 +46,7 @@ async def ult(ult):
             await eor(ult, "Error 🤔 occured.")
     else:
         try:
-            results = await ultroid_bot.inline_query(tgbot, "ultd")
+            results = await supun_bot.inline_query(tgbot, "ultd")
         except BotMethodInvalidError:
             z = []
             for x in LIST.values():
@@ -64,15 +64,15 @@ async def ult(ult):
                 ),
                 buttons=[
                     [
-                        Button.inline("• Pʟᴜɢɪɴs", data="hrrrr"),
-                        Button.inline("• Aᴅᴅᴏɴs", data="frrr"),
+                        Button.inline("•♈️ Pʟᴜɢɪɴs ♈️", data="hrrrr"),
+                        Button.inline("• ♈️ Aᴅᴅᴏɴs ♈️", data="frrr"),
                     ],
                     [
-                        Button.inline("Oᴡɴᴇʀ•ᴛᴏᴏʟꜱ", data="ownr"),
-                        Button.inline("Iɴʟɪɴᴇ•Pʟᴜɢɪɴs", data="inlone"),
+                        Button.inline("♈️ Oᴡɴᴇʀ•ᴛᴏᴏʟꜱ ♈️", data="ownr"),
+                        Button.inline("♈️ Iɴʟɪɴᴇ•Pʟᴜɢɪɴs ♈️", data="inlone"),
                     ],
                     [Button.url("⚙️Sᴇᴛᴛɪɴɢs⚙️", url=f"https://t.me/{bnn}?start=set")],
-                    [Button.inline("••Cʟᴏꜱᴇ••", data="close")],
+                    [Button.inline("•• ❌ Cʟᴏꜱᴇ ❌••", data="close")],
                 ],
             )
         except rep:
