@@ -17,7 +17,7 @@ from telethon.tl.types import DataJSON
 LOG_CHANNEL = int(udB.get("LOG_CHANNEL"))
 if vcbot is not None:
 
-    bot = TelegramClient("ultroid_vc", Var.API_ID, Var.API_HASH).start(bot_token=udB.get("BOT_TOKEN"))
+    bot = TelegramClient("supun_vc", Var.API_ID, Var.API_HASH).start(bot_token=udB.get("BOT_TOKEN"))
 
     async def get_entity(chat):
         try:
@@ -53,7 +53,7 @@ if vcbot is not None:
         if not call:
             return await bot.send_message(
                 data["chat"]["id"],
-                "`I can't access voice chat.`",
+                "`අඩො කො යකො owner මට permission දියන්කො 😂 .`",
             )
 
         try:
@@ -82,7 +82,7 @@ if vcbot is not None:
             )
             await bot.send_message(
                 LOG_CHANNEL,
-                f"`Joined Voice Chat in {(await bot.get_entity(data['chat']['id'])).title}`",
+                f"`මාත් ආවෝ voice chat එකට ආතල් දෙන්න , 🗣️සිංදුවක් කියන්නද ?{(await bot.get_entity(data['chat']['id'])).title}`",
             )
         except Exception as ex:
             return await bot.send_message(data["chat"]["id"], "`" + str(ex) + "`")
@@ -127,7 +127,7 @@ if vcbot is not None:
             )
             await bot.send_message(
                 LOG_CHANNEL,
-                f"Left Voice Chat in `{data['chat']['title']}`",
+                f"මන් යනවා යන්න උබලත් එක්ක බැ බන් `{data['chat']['title']}`",
             )
         except Exception as ex:
             return await bot.send_message(
