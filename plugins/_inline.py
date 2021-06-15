@@ -569,7 +569,7 @@ def page_num(page_number, loaded_plugins, prefix, type):
         ] + [
             (
                 Button.inline(
-                    "« Pʀᴇᴠɪᴏᴜs",
+                    "« ♈️Pʀᴇᴠɪᴏᴜs",
                     data=f"{prefix}_prev({modulo_page})",
                 ),
                 Button.inline("« Bᴀᴄᴋ »", data="open"),
@@ -577,7 +577,7 @@ def page_num(page_number, loaded_plugins, prefix, type):
                     "Nᴇxᴛ »",
                     data=f"{prefix}_next({modulo_page})",
                 ),
-            ),
+            ),y
         ]
     else:
         pairs = pairs[
