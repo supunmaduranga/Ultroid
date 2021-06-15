@@ -8,7 +8,7 @@
 """
 ⚒️ Commands Available -
 
-• `{i}afk<optional reason>`
+• `{i}අපි නැ මහත්තයො 😂<optional reason>`
     AFK means away from keyboard,
     After u active this if Someone tag or msg u then It auto Reply Him/her,
     (Note : By Reply To any media U can set media afk too).
